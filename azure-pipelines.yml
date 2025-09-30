@@ -49,7 +49,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     pool:
-      vmImage: 'ubuntu-20.04'
+      vmImage: 'ubuntu-22.04'
     environment: 'kubernetes-env-001'
     variables:
     - group: ADOWebAppDockerVariables
