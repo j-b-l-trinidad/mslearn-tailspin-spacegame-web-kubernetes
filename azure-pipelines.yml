@@ -80,6 +80,7 @@ stages:
                 azureSubscriptionConnection: 'kubernetes-resource-manager-connection'
                 azureResourceGroup: 'tailspin-space-game-rg'
                 kubernetesCluster: 'tailspinspacegame-31396'
+                progressDeadlineSeconds: 3600
                 namespace: 'default'
                 manifests: |
                   $(Pipeline.Workspace)/manifests/deployment.yml
