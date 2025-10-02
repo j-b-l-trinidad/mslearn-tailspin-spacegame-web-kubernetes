@@ -69,7 +69,7 @@ stages:
                   dockerRegistryEndpoint: 'ado-docker-kubernetes-service-connection-001'
                   azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
                   azureResourceGroup: 'ado-web-app-resourcegroup'
-                  kubernetesCluster: 'adowebappkubernetescontainerregistry001'
+                  kubernetesCluster: 'ado-kubernetes-001'
                   namespace: 'default'
 
           - task: KubernetesManifest@1
@@ -79,7 +79,7 @@ stages:
                 connectionType: azureResourceManager
                 azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
                 azureResourceGroup: 'ado-web-app-resourcegroup'
-                kubernetesCluster: 'adowebappkubernetescontainerregistry001'
+                kubernetesCluster: 'ado-kubernetes-001'
                 progressDeadlineSeconds: 3600
                 namespace: 'default'
                 manifests: |
