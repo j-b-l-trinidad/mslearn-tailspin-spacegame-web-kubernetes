@@ -68,7 +68,7 @@ stages:
                   secretName: $(imagePullSecret)
                   dockerRegistryEndpoint: 'ado-docker-kubernetes-service-connection-001'
                   azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
-                  azureResourceGroup: 'adowebappkubernetescontainerregistry001'
+                  azureResourceGroup: 'ado-web-app-resourcegroup'
                   kubernetesCluster: 'adowebappkubernetescontainerregistry001'
                   namespace: 'default'
 
@@ -78,7 +78,7 @@ stages:
                 action: deploy
                 connectionType: azureResourceManager
                 azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
-                azureResourceGroup: 'adowebappkubernetescontainerregistry001'
+                azureResourceGroup: 'ado-web-app-resourcegroup'
                 kubernetesCluster: 'adowebappkubernetescontainerregistry001'
                 progressDeadlineSeconds: 3600
                 namespace: 'default'
