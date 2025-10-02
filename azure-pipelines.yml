@@ -24,7 +24,7 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        containerRegistry: 'kubernetes-connection'
+        containerRegistry: 'ado-docker-kubernetes-service-connection-001'
         tags: |
           $(tag)
 
@@ -35,7 +35,7 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(leaderboardRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.LeaderboardContainer/Dockerfile'
-        containerRegistry: 'kubernetes-connection'
+        containerRegistry: 'ado-docker-kubernetes-service-connection-001'
         tags: |
           $(tag)
 
@@ -52,7 +52,7 @@ stages:
       vmImage: 'ubuntu-latest'
     environment: 'kubernetes-env-001'
     variables:
-    - group: ADOWebAppDockerVariables
+    - group: ado-docker-variable
     strategy:
       runOnce:
         deploy:
@@ -66,10 +66,10 @@ stages:
                   action: createSecret
                   connectionType: azureResourceManager
                   secretName: $(imagePullSecret)
-                  dockerRegistryEndpoint: 'kubernetes-connection'
-                  azureSubscriptionConnection: 'kubernetes-resource-manager-connection'
-                  azureResourceGroup: 'tailspin-space-game-rg'
-                  kubernetesCluster: 'tailspinspacegame-31396'
+                  dockerRegistryEndpoint: 'ado-docker-kubernetes-service-connection-001'
+                  azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
+                  azureResourceGroup: 'adowebappkubernetescontainerregistry001'
+                  kubernetesCluster: 'adowebappkubernetescontainerregistry001'
                   namespace: 'default'
 
           - task: KubernetesManifest@1
@@ -77,9 +77,9 @@ stages:
             inputs:
                 action: deploy
                 connectionType: azureResourceManager
-                azureSubscriptionConnection: 'kubernetes-resource-manager-connection'
-                azureResourceGroup: 'tailspin-space-game-rg'
-                kubernetesCluster: 'tailspinspacegame-31396'
+                azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
+                azureResourceGroup: 'adowebappkubernetescontainerregistry001'
+                kubernetesCluster: 'adowebappkubernetescontainerregistry001'
                 progressDeadlineSeconds: 3600
                 namespace: 'default'
                 manifests: |
@@ -90,3 +90,5 @@ stages:
                 containers: |
                   $(RegistryName)/$(webRepository):$(tag)
                   $(RegistryName)/$(leaderboardRepository):$(tag)
+
+                # a
