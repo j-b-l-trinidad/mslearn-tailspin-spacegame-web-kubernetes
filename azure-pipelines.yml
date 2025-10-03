@@ -24,7 +24,7 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        containerRegistry: 'ado-docker-kubernetes-service-connection-001'
+        containerRegistry: 'kubernetes-001'
         tags: |
           $(tag)
 
@@ -35,7 +35,7 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(leaderboardRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.LeaderboardContainer/Dockerfile'
-        containerRegistry: 'ado-docker-kubernetes-service-connection-001'
+        containerRegistry: 'kubernetes-001'
         tags: |
           $(tag)
 
@@ -66,8 +66,8 @@ stages:
                   action: createSecret
                   connectionType: azureResourceManager
                   secretName: $(imagePullSecret)
-                  dockerRegistryEndpoint: 'ado-docker-kubernetes-service-connection-001'
-                  azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
+                  dockerRegistryEndpoint: 'kubernetes-001'
+                  azureSubscriptionConnection: 'kubernetes-arm-001'
                   azureResourceGroup: 'ado-web-app-resourcegroup'
                   kubernetesCluster: 'ado-kubernetes-001'
                   namespace: 'default'
@@ -77,7 +77,7 @@ stages:
             inputs:
                 action: deploy
                 connectionType: azureResourceManager
-                azureSubscriptionConnection: 'ado-docker-kubernetes-arm-service-connection-001'
+                azureSubscriptionConnection: 'kubernetes-arm-001'
                 azureResourceGroup: 'ado-web-app-resourcegroup'
                 kubernetesCluster: 'ado-kubernetes-001'
                 progressDeadlineSeconds: 3600
