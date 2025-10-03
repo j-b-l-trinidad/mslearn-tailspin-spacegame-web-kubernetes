@@ -14,11 +14,9 @@ spec:
     spec:
       containers:
         - name: web
-          image: adowebappkubernetesregistrycontainer001.azurecr.io/web
+          image: adowebappkubernetescontainerregistry001.azurecr.io/web
           ports:
-          -port: 80
-           targetPort: 5000
-           containerPort: 5000
+          - containerPort: 5000
 ---
 apiVersion : apps/v1
 kind: Deployment
@@ -36,8 +34,6 @@ spec:
     spec:
       containers:
         - name: leaderboard
-          image: adowebappkubernetesregistrycontainer001.azurecr.io/leaderboard
+          image: adowebappkubernetescontainerregistry001.azurecr.io/leaderboard
           ports:
-          -port: 80
-           targetPort: 5000
-           containerPort: 5000
+          - containerPort: 5000
